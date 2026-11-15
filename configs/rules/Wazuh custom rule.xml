@@ -1,0 +1,8 @@
+<rule id="100002" level="5">
+    <if_sid>61603</if_sid>
+    <field name="win.system.eventID">^1$</field>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\powershell\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">WazuhRuleTest</field>
+    <description>Lab test: PowerShell process creation with WazuhRuleTest marker.</description>
+    <group>sysmon,process_creation,lab_test,</group>
+</rule>

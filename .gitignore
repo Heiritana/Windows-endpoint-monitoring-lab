@@ -1,0 +1,17 @@
+﻿# Credentials and secrets
+.env
+.env.*
+*.key
+*.pem
+client.keys
+
+# Raw forensic and potentially sensitive data
+*.evtx
+*.pcap
+*.dmp
+*.mem
+*.log
+
+# Windows-generated files
+Thumbs.db
+Desktop.ini

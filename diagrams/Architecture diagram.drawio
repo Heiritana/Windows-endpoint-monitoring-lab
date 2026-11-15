@@ -1,0 +1,84 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="windows-endpoint-wazuh" name="Lab Architecture">
+    <mxGraphModel dx="1182" dy="819" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#1F2937;" value="Windows Endpoint Security Monitoring Lab" vertex="1">
+          <mxGeometry height="45" width="940" x="330" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="host" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F0FE;strokeColor=#4A78C2;fontSize=14;spacing=12;" value="&lt;b&gt;Physical host&lt;/b&gt;&lt;br&gt;Windows 11 Home&lt;br&gt;VMware Workstation Pro" vertex="1">
+          <mxGeometry height="115" width="270" x="40" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="vmnet1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14;spacing=10;" value="&lt;b&gt;VMnet1 — Host-only network&lt;/b&gt;&lt;br&gt;192.168.149.0/24&lt;br&gt;Host adapter enabled" vertex="1">
+          <mxGeometry height="80" width="820" x="370" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2F0D9;strokeColor=#70AD47;fontSize=14;spacing=10;" value="&lt;b&gt;Ubuntu Server 24.04.5 LTS&lt;/b&gt;&lt;br&gt;Wazuh all-in-one&lt;br&gt;&lt;br&gt;Wazuh Manager&lt;br&gt;Wazuh Indexer&lt;br&gt;Wazuh Dashboard&lt;br&gt;&lt;br&gt;Host-only: 192.168.149.10&lt;br&gt;&lt;div&gt;NAT: 192.168.12.128&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="340" x="500" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="endpoint" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#C65911;fontSize=14;spacing=10;" value="&lt;b&gt;Windows 11 Enterprise Evaluation endpoint&lt;/b&gt;&lt;br&gt;DESKTOP-1UNTTJL&lt;br&gt;Host-only: 192.168.149.129&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;b&gt;Sysmon 15.22&lt;/b&gt;&lt;br&gt;Collects process, network, file and registry telemetry&lt;br&gt;&lt;br&gt;&lt;b&gt;Wazuh Agent 4.14.10&lt;/b&gt;&lt;br&gt;Reads Sysmon Operational event channel and forwards events" vertex="1">
+          <mxGeometry height="340" width="420" x="930" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#7565A8;fontSize=14;spacing=10;" value="&lt;b&gt;Host web browser&lt;/b&gt;&lt;br&gt;Wazuh Dashboard&lt;br&gt;https://192.168.149.10" vertex="1">
+          <mxGeometry height="140" width="300" x="40" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="nat" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F3F3;strokeColor=#888888;fontSize=14;spacing=10;dashed=1;" value="&lt;b&gt;VMnet8 — NAT&lt;/b&gt;&lt;br&gt;192.168.12.0/24&lt;br&gt;Used for server internet access when required (e.g. installation/updates)" vertex="1">
+          <mxGeometry height="100" width="520" x="430" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="sharedfolder" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F3F3;strokeColor=#888888;fontSize=14;spacing=10;dashed=1;" value="&lt;div&gt;&lt;b&gt;VMware Shared Folder&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="360" x="1030" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="host" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;strokeColor=#D6B656;strokeWidth=2;fontSize=14;" target="vmnet1" value="Host virtual adapter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="vmnet1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;strokeColor=#70AD47;strokeWidth=2;fontSize=14;" target="server" value="VMnet1 interface: 192.168.149.10">
+          <mxGeometry relative="1" x="0.7949" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="vmnet1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;strokeColor=#C65911;strokeWidth=2;fontSize=14;" target="endpoint" value="VMnet1 interface: 192.168.149.129">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#C65911;strokeWidth=3;fontSize=14;labelBackgroundColor=#FFFFFF;" target="server" value="&lt;div&gt;Sysmon Operational event&lt;/div&gt;&lt;div&gt;&amp;nbsp;channel → Wazuh&amp;nbsp;&lt;/div&gt;&lt;div&gt;Agent → TCP 1514&lt;/div&gt;&lt;div&gt;&amp;nbsp;(event forwarding)&lt;/div&gt;">
+          <mxGeometry relative="1" x="-0.1111" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="875" y="420" />
+              <mxPoint x="875" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#7F6000;strokeWidth=2;dashed=1;fontSize=14;labelBackgroundColor=#FFFFFF;align=center;" value="&lt;div&gt;Agent registration&lt;/div&gt;&lt;div&gt;&amp;nbsp;/ enrollment TCP 1515&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="881" y="525" />
+              <mxPoint x="881" y="525" />
+            </Array>
+            <mxPoint x="931" y="525" as="sourcePoint" />
+            <mxPoint x="841" y="525" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="host" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#7565A8;strokeWidth=2;fontSize=14;labelBackgroundColor=#FFFFFF;" target="browser" value="Dashboard access over HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="browser" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#7565A8;strokeWidth=2;fontSize=14;labelBackgroundColor=#FFFFFF;" target="server" value="Host-only access to 192.168.149.10:443">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="410" />
+              <mxPoint x="390" y="620" />
+              <mxPoint x="670" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="server" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;strokeColor=#888888;strokeWidth=2;dashed=1;fontSize=14;" target="nat" value="Optional NAT interface">
+          <mxGeometry relative="1" x="0.5714" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;strokeColor=#888888;strokeWidth=2;dashed=1;fontSize=14;" target="sharedfolder" value="Host ↔ guest file transfer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

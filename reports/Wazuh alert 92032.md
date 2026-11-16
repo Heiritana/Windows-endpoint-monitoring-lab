@@ -100,11 +100,11 @@ Observed results:
 | StartMode | Manual |
 | PathName | `C:\WINDOWS\system32\svchost.exe -k LocalSystemNetworkRestricted -p` |
 
-The service was stopped and configured for Manual startup at the time of inspection. However, the resultin values do not establish its state when the alert occurred.
+The service was stopped and configured for Manual startup at the time of inspection. However, the resulting values do not establish its state when the alert occurred.
 
 ## 4. Evidence analysis
 
-Several observations support this is possibly a legitimate Windows Hotpatch event:
+Several observations support this is most likely a legitimate Windows Hotpatch event:
 
 1. The scheduled task exists under the Windows Hotpatch task directory.
 2. Its configured action invokes the same script identified in the Wazuh alert's parent command line.
@@ -121,16 +121,16 @@ The task's latest execution information and the service's current state cannot i
 
 **Assessment: Likely legitimate Windows Hotpatch-related activity.**
 
-The script itself and the service details all provide some supporting evidence that the command execution could be part of some legitimate Windows maintenance activity.
+The script itself and the service details all provide some supporting evidence that the command execution could be part of legitimate Windows maintenance activity.
 
-The alert in itself doesn't establish malicious activity. The evidence available is also not sufficient to allow us to definitively categorise that particular historical execution as benign.
+The alert in itself does not establish malicious activity. The evidence available is also not sufficient to allow us to definitively categorise that particular historical execution as benign.
 
 There were no scheduled tasks, services or scripts altered as part of this investigation.
 
 ## 6. Limitations
 
 - The exact historical execution of the scheduled task at the alert timestamp was not confirmed.
-- The most recent task execution time doesn't give you a full execution history.
+- The most recent task execution time does not give you a full execution history.
 - The service state and startup mode were observed after the alert.
 - A complete historical process execution chain was not independently reconstructed.
 

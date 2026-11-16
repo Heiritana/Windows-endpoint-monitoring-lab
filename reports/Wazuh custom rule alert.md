@@ -49,7 +49,7 @@ The following rule was added to the Wazuh manager's `local_rules.xml` configurat
 The rule contains the following conditions:
 
 - Parent rule ID `61603` must match.
-- Windows event ID must be `1`, which correspond to Sysmon Process Create.
+- Windows event ID must be `1`, which corresponds to Sysmon Process Create.
 - The process image must end with `powershell.exe`, using a case-insensitive regular expression.
 - The command line must contain the marker `WazuhRuleTest`.
 

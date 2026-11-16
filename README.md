@@ -67,7 +67,7 @@ The endpoint is normally left on the Host-only network to limit its exposure to 
 - Git: version control for the project files and documentation.
 - GitHub: platform for publishing the portfolio project.
 
-## 5. Implementation Progress
+## 5. Implementation
 
 The following components have been implemented and tested:
 
@@ -86,7 +86,7 @@ The following components have been implemented and tested:
 
 **Current status:** Lab implementation and initial detection testing complete. Portfolio documentation, evidence organisation and final project validation still to go.
 
-## 6. Custom Detection Engineering
+## 6. Custom Detection Rule
 
 A custom Wazuh rule was created to detect a controlled PowerShell process creation test which contained a particular marker.
 
@@ -114,41 +114,6 @@ This is a lab detection rule, not a general purpose malicious PowerShell detecti
 - The custom PowerShell detection rule is based on a specific command line marker and will generate false negatives for any activity that doesn't contain that marker.
 - Any legitimate activity which contains the marker would trigger the rule.
 - The rule is intended to be a detection engineering example rather than a comprehensive PowerShell threat detection rule.
+- Sysmon was configured for broad event collection, which can generate a great number of events.
 - Archive logging was turned off following the testing phase due to the sheer volume of data being generated.
 - No formal log retention policy has yet been put in place.
-- The lab hasn't yet had its full final validation and portfolio review.
-
-## 9. Planned Work
-
--  Organize and sanitize the config files.
--  Add the Sysmon configuration.
--  Add the Wazuh agent configuration snippet.
--  Add the custom Wazuh detection rule.
--  Create a lab architecture diagram.
--  Collect and organise real implementation screenshots.
--  Prepare a technical investigation report.
--  Document the installation and configuration procedures.
--  Review the contents of the repository for any sensitive information.
-- Publish the finished project on GitHub.
-
-## 10. Learning Outcomes
-
-This project is intended to demonstrate practical understanding of:
-
-- Windows endpoint telemetry.
-- Security event collection and forwarding.
-- SIEM architecture and operation.
-- Development and testing of detection rules.
-- Security alert investigation.
-- False positives and false negatives.
-- Log management and retention considerations.
-- Virtual network isolation.
-- Technical documentation and version control.
-
----
-
-**Project type:** Personal Cybersecurity Practical Lab
-
-**Focus areas:** SOC Operations, Endpoint Security Monitoring, Detection Engineering and Incident Investigation
-
-**Status:** In progress

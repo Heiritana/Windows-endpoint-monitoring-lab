@@ -84,8 +84,6 @@ The following components have been implemented and tested:
 - Custom Wazuh detection rule implemented and tested with both positive and negative test cases.
 - Git repository initialised locally.
 
-**Current status:** Lab implementation and initial detection testing complete. Portfolio documentation, evidence organisation and final project validation still to go.
-
 ## 6. Custom Detection Rule
 
 A custom Wazuh rule was created to detect a controlled PowerShell process creation test which contained a particular marker.
